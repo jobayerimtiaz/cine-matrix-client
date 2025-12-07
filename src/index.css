@@ -1,5 +1,124 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+@import "tailwindcss";
 
-* {
-  font-family: "Outfit", sans-serif;
+@layer base {
+  @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+}
+
+/* Theme tokens */
+:root {
+  --font-main: DM Sans, sans-serif;
+  --font-heading: Bebas Neue, sans-serif;
+
+  --color-bg: #090914;
+  --color-text: #ffffff;
+  --color-text-muted: #c8c8d9;
+  --color-btn-light: #dcdcff;
+  --color-btn-light-text: #1a1a2e;
+
+  --grad-1: #b28bff;
+  --grad-2: #8a5bff;
+  --grad-3: #e8d4ff;
+}
+
+/* Light mode overrides */
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-text: #f6f6ff;
+    --color-text-muted: #d4d4e5;
+    --color-btn-light: #f3eeff;
+    --color-btn-light-text: #1e1e33;
+    --grad-1: #dcd6ff;
+    --grad-2: #bfb4ff;
+    --grad-3: #f7f4ff;
+  }
+}
+
+/* Global resets */
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-main);
+  margin: 0;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    var(--grad-1),
+    var(--grad-2),
+    var(--grad-3)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: 0.3s ease;
+}
+
+h1:hover {
+  transform: scale(1.05);
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+p {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+a {
+  @apply text-gray-300 hover:text-purple-300 transition-colors;
+}
+
+/* Buttons */
+.btn-light {
+  background: var(--color-btn-light);
+  color: var(--color-btn-light-text);
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.6rem;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+
+.btn-light:hover {
+  background: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Search bar */
+.nav-search {
+  @apply w-full max-w-md mx-auto relative;
+}
+
+.nav-search-input {
+  @apply w-full px-8 py-2 rounded-full bg-[#1a1630] text-white placeholder-gray-400 outline-none border border-transparent transition-all duration-200;
+}
+
+.nav-search-input:focus {
+  border: #8b5cf6;
+  box-shadow: 0 0 8px rgba(139, 92, 246, 0.5);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #6e5ed9;
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+  background: #141129;
 }

@@ -1,9 +1,13 @@
 import { useState } from "react";
-import { Menu, X, Search } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Menu, X, Search, TicketPlus } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { user } = useUser();
+  const { openSignIn } = useClerk();
+  const navigate = useNavigate();
 
   return (
     <nav className="w-full bg-transparent backdrop-blur-lg fixed top-0 left-0 z-50 border-b border-white/10">
@@ -42,12 +46,28 @@ export default function Navbar() {
           <Link to="/releases" className="nav-link">
             Releases
           </Link>
-          <Link to="/login" className="btn-light">
-            Login
+          <Link to="/favorites" className="nav-link">
+            Favorites
           </Link>
+          {!user ? (
+            <Link onClick={openSignIn} to="/login" className="btn-light">
+              Login
+            </Link>
+          ) : (
+            <UserButton>
+              <UserButton.MenuItems>
+                <UserButton.Action
+                  label="My Bookings"
+                  labelIcon={<TicketPlus width={15} />}
+                  onClick={() => navigate("/my-bookings")}
+                />
+              </UserButton.MenuItems>
+            </UserButton>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
+
         <button className="md:hidden text-white" onClick={() => setOpen(!open)}>
           {open ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -94,14 +114,31 @@ export default function Navbar() {
           >
             Releases
           </Link>
-
-          <Link
-            onClick={() => setOpen(false)}
-            to="/login"
-            className="btn-light w-fit"
-          >
-            Login
+          <Link to="/favorites" className="nav-link">
+            Favorites
           </Link>
+          {!user ? (
+            <Link
+              onClick={() => {
+                setOpen(false);
+                openSignIn();
+              }}
+              to="/login"
+              className="btn-light w-fit"
+            >
+              Login
+            </Link>
+          ) : (
+            <UserButton>
+              <UserButton.MenuItems>
+                <UserButton.Action
+                  label="My Bookings"
+                  labelIcon={<TicketPlus width={15} />}
+                  onClick={() => navigate("/my-bookings")}
+                />
+              </UserButton.MenuItems>
+            </UserButton>
+          )}
         </div>
       )}
     </nav>

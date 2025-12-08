@@ -10,7 +10,7 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   return (
-    <nav className="w-full bg-transparent backdrop-blur-lg fixed top-0 left-0 z-50 border-b border-white/10">
+    <nav className="w-full bg-transparent fixed top-0 left-0 z-50 border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="text-white font-heading text-3xl tracking-wide">

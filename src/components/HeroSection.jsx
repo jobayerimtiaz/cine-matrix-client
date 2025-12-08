@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import guardiansImage from "../assets/backgroundImage.png";
 const HeroSection = () => {
+  const navigate = useNavigate();
   return (
     <section
-      className="relative w-full h-[90vh] md:h-[80vh] bg-cover bg-center flex items-center"
+      className="relative w-full h-screen bg-cover bg-center flex items-center hero-bg"
       style={{
         backgroundImage: `url(${guardiansImage})`,
       }}
@@ -19,7 +21,7 @@ const HeroSection = () => {
 
         {/* Genre */}
         <p className="text-sm md:text-base text-gray-300 uppercase tracking-wide">
-          Action • Adventure • Sci-Fi
+          Action | Adventure | Sci-Fi
         </p>
 
         {/* Short Description */}
@@ -29,7 +31,10 @@ const HeroSection = () => {
         </p>
 
         {/* Explore Button */}
-        <button className="btn-light w-fit mt-3 hover:scale-105 transition-transform">
+        <button
+          onClick={() => navigate("/movies")}
+          className="btn-light w-fit mt-3 hover:scale-105 transition-transform"
+        >
           Explore More
         </button>
       </div>

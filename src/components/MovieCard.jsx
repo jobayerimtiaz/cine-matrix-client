@@ -20,7 +20,7 @@ const MovieCard = ({ movie }) => {
     <div className="bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:scale-[1.02] transition-all duration-300 shadow-xl">
       {/* Poster */}
       <img
-        onClick={() => navigate(`movies/${movie._id}`)}
+        onClick={() => navigate(`/movies/${movie._id}`)}
         src={backdrop_path}
         alt={title}
         className="w-full h-64 object-cover"

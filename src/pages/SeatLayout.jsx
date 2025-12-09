@@ -123,7 +123,10 @@ const SeatLayout = () => {
 
       {/* Screen */}
       <div className="flex justify-center my-8">
-        <div className="w-72 sm:w-96 h-2 bg-gradient-to-b from-gray-300 to-gray-600 rounded-full shadow-xl" />
+        <div
+          className="w-72 sm:w-96 h-8 bg-gradient-to-b from-gray-300 to-gray-600 shadow-2xl
+               clip-curved"
+        ></div>
       </div>
 
       {/* Title */}

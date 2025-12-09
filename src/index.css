@@ -152,6 +152,12 @@ a {
   background-color: transparent !important;
 }
 
+.clip-curved {
+  clip-path: ellipse(70% 40% at 50% 0%);
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+}
+
 /* Buttons */
 .btn-light {
   background: var(--color-btn-light);

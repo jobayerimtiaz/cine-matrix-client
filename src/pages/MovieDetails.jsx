@@ -13,20 +13,19 @@ import ReactPlayer from "react-player";
 import formatTime from "../lib/formateTime";
 import CastSection from "../components/CastSection";
 import DateSelect from "../components/DateSelect";
+import CinematicLoader from "../components/CinematicLoader";
 const MovieDetails = () => {
   const { id } = useParams();
   const [movieShow, setMovieShow] = useState(null);
-  const [showTrailer, setShowTrailer] = useState(false);
+  // const [showTrailer, setShowTrailer] = useState(false);
   const getShow = async () => {
     const show = dummyShowsData.find((s) => String(s._id) === String(id));
-    if (!show) {
-      setMovieShow(null);
-      return;
+    if (show) {
+      setMovieShow({
+        movie: show,
+        dateTime: dummyDateTimeData,
+      });
     }
-    setMovieShow({
-      movie: show,
-      dateTime: dummyDateTimeData,
-    });
   };
   useEffect(() => {
     getShow();
@@ -143,7 +142,7 @@ const MovieDetails = () => {
       )} */}
     </div>
   ) : (
-    <div>Loading</div>
+    <CinematicLoader></CinematicLoader>
   );
 };
 export default MovieDetails;

@@ -21,6 +21,71 @@
   --grad-3: #e8d4ff;
 }
 
+@layer utilities {
+  .animate-streak1 {
+    animation: streak1 2.5s linear infinite;
+  }
+  .animate-streak2 {
+    animation: streak2 3.5s linear infinite;
+  }
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+  .animate-fade {
+    animation: fade 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes streak1 {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes streak2 {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes fade {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 /* Light mode overrides */
 @media (prefers-color-scheme: light) {
   :root {

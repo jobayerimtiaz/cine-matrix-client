@@ -12,6 +12,7 @@ import {
 import ReactPlayer from "react-player";
 import formatTime from "../lib/formateTime";
 import CastSection from "../components/CastSection";
+import DateSelect from "../components/DateSelect";
 const MovieDetails = () => {
   const { id } = useParams();
   const [movieShow, setMovieShow] = useState(null);
@@ -102,10 +103,13 @@ const MovieDetails = () => {
               </button>
 
               {/* Buy Tickets */}
-              <button className="px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-white/80 transition flex items-center gap-2">
+              <a
+                href="#dateSelect"
+                className="px-6 py-3 bg-purple-600 text-black font-semibold rounded-lg hover:bg-white/80 transition flex items-center gap-2"
+              >
                 Buy Tickets
                 <ArrowRight size={20} />
-              </button>
+              </a>
 
               <button className="p-3 my-5 rounded-full bg-white/15 hover:bg-white/25 transition backdrop-blur-md">
                 <Heart size={24} className="text-red-400" />
@@ -114,6 +118,7 @@ const MovieDetails = () => {
           </div>
         </div>
         <CastSection />
+        <DateSelect dateTime={movieShow.dateTime} id={id}></DateSelect>
       </div>
 
       {/* ─── TRAILER MODAL ─────────────────── */}

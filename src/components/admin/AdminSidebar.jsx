@@ -22,64 +22,59 @@ const AdminSidebar = () => {
 
   return (
     <>
-      {/* Mobile top bar */}
-      <div className="bg-gray-900 text-white flex items-center justify-between p-4 md:hidden fixed w-full z-50">
+      {/* Mobile Top Bar */}
+      <div className="bg-gray-900 w-11/12 text-white flex items-center justify-between p-4 md:hidden fixed top-0 left-0 right-0 z-50">
         <span className="text-xl font-bold">Cinematrix</span>
-        <button onClick={() => setIsOpen(!isOpen)}>
+        <button onClick={() => setIsOpen(true)}>
           <Menu className="w-6 h-6" />
         </button>
       </div>
 
-      {/* Sidebar overlay for mobile */}
+      {/* Mobile Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-30 z-40 md:hidden"
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
           onClick={() => setIsOpen(false)}
-        ></div>
+        />
       )}
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-0 left-0 h-screen bg-gray-900 text-white w-64 z-50 transform transition-transform duration-300 ease-in-out
-        ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        } md:translate-x-0 md:static md:flex md:flex-col`}
+        className={`fixed top-0 left-0 h-screen bg-gray-900 text-white w-64 z-50
+        transform transition-transform duration-300 ease-in-out
+        ${isOpen ? "translate-x-0" : "-translate-x-full"}
+        md:translate-x-0 md:static`}
       >
-        {/* Admin Branding */}
-        <div className="p-6 text-2xl font-bold border-b border-gray-700 hidden md:block">
+        {/* Desktop Branding */}
+        <div className="hidden md:block p-6 text-2xl font-bold border-b border-gray-700">
           Cinematrix Admin
         </div>
 
-        {/* User Profile */}
+        {/* User */}
         <div className="flex items-center p-4 border-b border-gray-700">
-          <img
-            src={user?.imageUrl || "/default-avatar.png"}
-            alt="User"
-            className="w-10 h-10 rounded-full mr-3"
-          />
-          <div>
-            <p className="text-sm font-semibold">
-              {user?.firstName} {user?.lastName}
-            </p>
-          </div>
+          <img src={user?.imageUrl} className="w-10 h-10 rounded-full mr-3" />
+          <p className="text-sm font-semibold">
+            {user.firstName} {user.lastName}
+          </p>
         </div>
 
         {/* Links */}
-        <nav className="flex-1 p-4 space-y-2 overflow-y-auto">
+        <nav className="p-4 space-y-2 overflow-y-auto">
           {sidebarLinks.map((link) => {
             const isActive = location.pathname === link.path;
             const Icon = link.icon;
+
             return (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`flex items-center p-3 rounded-md hover:bg-gray-700 transition-colors ${
+                className={`flex items-center p-3 rounded-md hover:bg-gray-700 transition ${
                   isActive ? "bg-gray-800" : ""
                 }`}
-                onClick={() => setIsOpen(false)} // close on mobile
+                onClick={() => setIsOpen(false)}
               >
                 <Icon className="w-5 h-5 mr-3" />
-                <span className="md:block ">{link.name}</span>
+                <span>{link.name}</span>
               </Link>
             );
           })}
